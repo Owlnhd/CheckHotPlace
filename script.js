@@ -70,85 +70,50 @@ if (navigator.geolocation) {
 }
 
 
-// dataList.forEach()
-// let dataPosition = new kakao.map.LatLng();
-
-
-dataList.forEach(element => {
-    let marker = new kakao.maps.Marker({
-        map: map,
-        position: element.coords,
-        image: markerImageRed
-    });
-
-    let content = '<div class ="label">'
-    + '<span class="left"></span><span class="center">'
-    + element.name //+ "    " + element.population
-    + '</span><span class="right"></span></div>';
-
-    let position = element.coords;
-
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-    });
-
-    kakao.maps.event.addListener(marker, 'mouseover', function () {
-        customOverlay.setMap(map);
-    });
-
-    kakao.maps.event.addListener(marker, 'mouseout', function () {
-        setTimeout(function () {
-            customOverlay.setMap();
-        });
-    });
-});
-
-
-// 위치별 마커 생성 및 표시
-// 마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-    {
-        title: '장소1',
-        latlng: new kakao.maps.LatLng(36.798177, 127.075426),
-        population: 1
-    },
-    {
-        title: '장소2',
-        latlng: new kakao.maps.LatLng(36.797057, 127.075426),
-        population: 5
-    },
-    {
-        title: '장소3',
-        latlng: new kakao.maps.LatLng(36.800067, 127.075436),
-        population: 10
-    },
-    {
-        title: '장소4',
-        latlng: new kakao.maps.LatLng(36.799057, 127.074306),
-        population: 15
-    }
-];
+// // 위치별 마커 생성 및 표시
+// // 마커를 표시할 위치와 title 객체 배열입니다 
+// var positions = [
+//     {
+//         title: '장소1',
+//         latlng: new kakao.maps.LatLng(36.798177, 127.075426),
+//         population: 1
+//     },
+//     {
+//         title: '장소2',
+//         latlng: new kakao.maps.LatLng(36.797057, 127.075426),
+//         population: 5
+//     },
+//     {
+//         title: '장소3',
+//         latlng: new kakao.maps.LatLng(36.800067, 127.075436),
+//         population: 10
+//     },
+//     {
+//         title: '장소4',
+//         latlng: new kakao.maps.LatLng(36.799057, 127.074306),
+//         population: 15
+//     }
+// ];
 
 var markerRed = [],
     markerYellow = [],
     markerGreen = [],
     markerBlue = [];
 
-positions.forEach(element => {
-    if (element.population >= 15) {
-        markerRed.push(element);
-    }
-    else if (element.population >= 10) {
-        markerYellow.push(element);
-    }
-    else if (element.population >= 5) {
-        markerGreen.push(element);
-    }
-    else {
-        markerBlue.push(element);
-    }
-});
+// positions.forEach(element => {
+//     if (element.population >= 15) {
+//         markerRed.push(element);
+//     }
+//     else if (element.population >= 10) {
+//         markerYellow.push(element);
+//     }
+//     else if (element.population >= 5) {
+//         markerGreen.push(element);
+//     }
+//     else {
+//         markerBlue.push(element);
+//     }
+// });
 
 // 마커 이미지의 이미지 주소입니다
 const imageRed = "images/dot_red.png",
@@ -165,127 +130,127 @@ const markerImageRed = new kakao.maps.MarkerImage(imageRed, imageSize),
     markerImageGreen = new kakao.maps.MarkerImage(imageGreen, imageSize),
     markerImageBlue = new kakao.maps.MarkerImage(imageBlue, imageSize);
 
-// 15명 이상 red marker
-markerRed.forEach(element => {
-    let marker = new kakao.maps.Marker({
-        map: map,
-        position: element.latlng,
-        image: markerImageRed
-    });
+// // 15명 이상 red marker
+// markerRed.forEach(element => {
+//     let marker = new kakao.maps.Marker({
+//         map: map,
+//         position: element.latlng,
+//         image: markerImageRed
+//     });
 
-    let content = '<div class ="label">'
-    + '<span class="left"></span><span class="center">'
-    + element.title + "    " + element.population
-    + '</span><span class="right"></span></div>';
+//     let content = '<div class ="label">'
+//     + '<span class="left"></span><span class="center">'
+//     + element.title + "    " + element.population
+//     + '</span><span class="right"></span></div>';
 
-    let position = element.latlng;
+//     let position = element.latlng;
 
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-    });
+//     let customOverlay = new kakao.maps.CustomOverlay({
+//         position: position,
+//         content: content,
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseover', function () {
-        customOverlay.setMap(map);
-    });
+//     kakao.maps.event.addListener(marker, 'mouseover', function () {
+//         customOverlay.setMap(map);
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseout', function () {
-        setTimeout(function () {
-            customOverlay.setMap();
-        });
-    });
-});
+//     kakao.maps.event.addListener(marker, 'mouseout', function () {
+//         setTimeout(function () {
+//             customOverlay.setMap();
+//         });
+//     });
+// });
 
-// 10명 이상 yellow marker
-markerYellow.forEach(element => {
-    let marker = new kakao.maps.Marker({
-        map: map,
-        position: element.latlng,
-        image: markerImageYellow
-    });
+// // 10명 이상 yellow marker
+// markerYellow.forEach(element => {
+//     let marker = new kakao.maps.Marker({
+//         map: map,
+//         position: element.latlng,
+//         image: markerImageYellow
+//     });
 
-    let content = '<div class ="label">'
-    + '<span class="left"></span><span class="center">'
-    + element.title + "    " + element.population
-    + '</span><span class="right"></span></div>';
+//     let content = '<div class ="label">'
+//     + '<span class="left"></span><span class="center">'
+//     + element.title + "    " + element.population
+//     + '</span><span class="right"></span></div>';
 
-    let position = element.latlng;
+//     let position = element.latlng;
 
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-    });
+//     let customOverlay = new kakao.maps.CustomOverlay({
+//         position: position,
+//         content: content,
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseover', function () {
-        customOverlay.setMap(map);
-    });
+//     kakao.maps.event.addListener(marker, 'mouseover', function () {
+//         customOverlay.setMap(map);
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseout', function () {
-        setTimeout(function () {
-            customOverlay.setMap();
-        });
-    });
-});
+//     kakao.maps.event.addListener(marker, 'mouseout', function () {
+//         setTimeout(function () {
+//             customOverlay.setMap();
+//         });
+//     });
+// });
 
-// 5명 이상 green marker
-markerGreen.forEach(element => {
-    let marker = new kakao.maps.Marker({
-        map: map,
-        position: element.latlng,
-        image: markerImageGreen
-    });
+// // 5명 이상 green marker
+// markerGreen.forEach(element => {
+//     let marker = new kakao.maps.Marker({
+//         map: map,
+//         position: element.latlng,
+//         image: markerImageGreen
+//     });
 
-    let content = '<div class ="label">'
-    + '<span class="left"></span><span class="center">'
-    + element.title + "    " + element.population
-    + '</span><span class="right"></span></div>';
+//     let content = '<div class ="label">'
+//     + '<span class="left"></span><span class="center">'
+//     + element.title + "    " + element.population
+//     + '</span><span class="right"></span></div>';
 
-    let position = element.latlng;
+//     let position = element.latlng;
 
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-    });
+//     let customOverlay = new kakao.maps.CustomOverlay({
+//         position: position,
+//         content: content,
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseover', function () {
-        customOverlay.setMap(map);
-    });
+//     kakao.maps.event.addListener(marker, 'mouseover', function () {
+//         customOverlay.setMap(map);
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseout', function () {
-        setTimeout(function () {
-            customOverlay.setMap();
-        });
-    });
-});
+//     kakao.maps.event.addListener(marker, 'mouseout', function () {
+//         setTimeout(function () {
+//             customOverlay.setMap();
+//         });
+//     });
+// });
 
-// 5명 미만 blue marker
-markerBlue.forEach(element => {
-    let marker = new kakao.maps.Marker({
-        map: map,
-        position: element.latlng,
-        image: markerImageBlue
-    });
+// // 5명 미만 blue marker
+// markerBlue.forEach(element => {
+//     let marker = new kakao.maps.Marker({
+//         map: map,
+//         position: element.latlng,
+//         image: markerImageBlue
+//     });
 
-    let content = '<div class ="label">'
-    + '<span class="left"></span><span class="center">'
-    + element.title + "    " + element.population
-    + '</span><span class="right"></span></div>';
+//     let content = '<div class ="label">'
+//     + '<span class="left"></span><span class="center">'
+//     + element.title + "    " + element.population
+//     + '</span><span class="right"></span></div>';
 
-    let position = element.latlng;
+//     let position = element.latlng;
 
-    let customOverlay = new kakao.maps.CustomOverlay({
-        position: position,
-        content: content,
-    });
+//     let customOverlay = new kakao.maps.CustomOverlay({
+//         position: position,
+//         content: content,
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseover', function () {
-        customOverlay.setMap(map);
-    });
+//     kakao.maps.event.addListener(marker, 'mouseover', function () {
+//         customOverlay.setMap(map);
+//     });
 
-    kakao.maps.event.addListener(marker, 'mouseout', function () {
-        setTimeout(function () {
-            customOverlay.setMap();
-        });
-    });
-});
+//     kakao.maps.event.addListener(marker, 'mouseout', function () {
+//         setTimeout(function () {
+//             customOverlay.setMap();
+//         });
+//     });
+// });
 

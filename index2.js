@@ -40,7 +40,7 @@ async function writeData() {
         const body = {
             name: name,
             latitude: latitude,
-            longitude: longitude,
+            longitude: longitude
             //time: formatDate
         };
 
@@ -88,8 +88,24 @@ function readData() {
         console.log(dataList[0].coords);
 
 
-        // dataList 참조하여 마커 생성 후 표시
         dataList.forEach(element => {
+            if (counts[element.coords] >= 4) {
+                markerRed.push(element);
+            }
+            else if (counts[element.coords] >= 3) {
+                markerYellow.push(element);
+            }
+            else if (counts[element.coords] >= 2) {
+                markerGreen.push(element);
+            }
+            else if (counts[element.coords] >= 1) {
+                markerBlue.push(element);
+            }
+        });
+
+
+        // dataList 참조하여 마커 생성 후 표시
+        markerRed.forEach(element => {
             let marker = new kakao.maps.Marker({
                 map: map,
                 position: element.coords,
@@ -119,7 +135,97 @@ function readData() {
             });
         });
 
+        markerYellow.forEach(element => {
+            let marker = new kakao.maps.Marker({
+                map: map,
+                position: element.coords,
+                image: markerImageYellow
+            });
+        
+            let content = '<div class ="label">'
+            + '<span class="left"></span><span class="center">'
+            + counts[element.coords] + " 명이 있어요!" //+ element.population
+            + '</span><span class="right"></span></div>';
+        
+            let position = element.coords;
+        
+            let customOverlay = new kakao.maps.CustomOverlay({
+                position: position,
+                content: content,
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseover', function () {
+                customOverlay.setMap(map);
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseout', function () {
+                setTimeout(function () {
+                    customOverlay.setMap();
+                });
+            });
+        });
 
+        markerGreen.forEach(element => {
+            let marker = new kakao.maps.Marker({
+                map: map,
+                position: element.coords,
+                image: markerImageGreen
+            });
+        
+            let content = '<div class ="label">'
+            + '<span class="left"></span><span class="center">'
+            + counts[element.coords] + " 명이 있어요!" //+ element.population
+            + '</span><span class="right"></span></div>';
+        
+            let position = element.coords;
+        
+            let customOverlay = new kakao.maps.CustomOverlay({
+                position: position,
+                content: content,
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseover', function () {
+                customOverlay.setMap(map);
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseout', function () {
+                setTimeout(function () {
+                    customOverlay.setMap();
+                });
+            });
+        });
+
+        markerBlue.forEach(element => {
+            let marker = new kakao.maps.Marker({
+                map: map,
+                position: element.coords,
+                image: markerImageBlue
+            });
+        
+            let content = '<div class ="label">'
+            + '<span class="left"></span><span class="center">'
+            + counts[element.coords] + " 명이 있어요!" //+ element.population
+            + '</span><span class="right"></span></div>';
+        
+            let position = element.coords;
+        
+            let customOverlay = new kakao.maps.CustomOverlay({
+                position: position,
+                content: content,
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseover', function () {
+                customOverlay.setMap(map);
+            });
+        
+            kakao.maps.event.addListener(marker, 'mouseout', function () {
+                setTimeout(function () {
+                    customOverlay.setMap();
+                });
+            });
+        });
+
+        
     })
     .catch(error => console.error('Error:', error));
 }
