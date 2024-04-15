@@ -17,7 +17,16 @@ var clusterer = new kakao.maps.MarkerClusterer({
     averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
     minLevel: 10 // 클러스터 할 최소 지도 레벨 
 });
+function createMarkersFromDataList() {
+    var markers = dataList.map(function(item) {
+        return new kakao.maps.Marker({
+            position: item.coords
+        });
+    });
 
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(markers);
+}
 // 현재 위치 표시
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {

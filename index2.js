@@ -86,7 +86,7 @@ function readData() {
         // });
         // console.log(dataList[0].coords);
 
-
+        createMarkersFromDataList();
         // dataList 참조하여 마커 생성 후 표시
         dataList.forEach(element => {
             let marker = new kakao.maps.Marker({
