@@ -12,40 +12,6 @@ map.setCopyrightPosition(kakao.maps.CopyrightPosition.BOTTOMRIGHT, true);
 
 var locPosition;
 
-// Google Sheets에서 데이터 읽고 좌표별 사람 수와 이름을 표시, 리스트 변수에 저장
-function readData() {
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        dataList = []; // 이전 데이터 초기화
-        const counts = {}; // 좌표별 사람 수를 저장할 객체
-
-        // 데이터를 순회하며 각 좌표별로 사람 수 계산
-        data.values.forEach(row => {
-            const name = row[2]; // 이름
-            // const coords = row[0] + ',' + row[1]; // 위도와 경도를 콤마로 구분하여 문자열 생성
-            
-            const coords = new kakao.maps.LatLng(row[0], row[1]);
-
-            counts[coords] = counts[coords] ? counts[coords] + 1 : 1;
-            dataList.push({name, coords, counts}); // 리스트 변수에 저장
-        });
-
-        
-        var markers = dataList.map(function(item) {
-            return new kakao.maps.Marker({
-                position: item.coords
-            });
-        });
-        
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
-        
-
-    })
-    
-    .catch(error => console.error('Error:', error));
-}
 
 // 현재 위치 표시
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
