@@ -1,7 +1,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(37.566405, 126.977822), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };
 
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
@@ -65,7 +65,7 @@ if (navigator.geolocation) {
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 중심 위치를 설정합니다
     
     map.setCenter(37.566405, 126.977822);
-    map.setLevel(4);
+    map.setLevel(5);
 
 }
 
@@ -95,10 +95,10 @@ if (navigator.geolocation) {
 //     }
 // ];
 
-var markerRed = [],
-    markerYellow = [],
-    markerGreen = [],
-    markerBlue = [];
+// var markerRed = [],
+//     markerYellow = [],
+//     markerGreen = [],
+//     markerBlue = [];
 
 // positions.forEach(element => {
 //     if (element.population >= 15) {
@@ -116,19 +116,27 @@ var markerRed = [],
 // });
 
 // 마커 이미지의 이미지 주소입니다
-const imageRed = "images/dot_red.png",
-    imageYellow = "images/dot_yellow.png",
-    imageGreen = "images/dot_green.png",
-    imageBlue = "images/dot_blue.png";
+// const imageRed = "images/dot_red.png",
+//     imageYellow = "images/dot_yellow.png",
+//     imageGreen = "images/dot_green.png",
+//     imageBlue = "images/dot_blue.png";
+
+
+var markers = [];
+
+var markerImagesrc = "images/dot_location.png";
 
 // 마커 이미지의 이미지 크기 입니다
-const imageSize = new kakao.maps.Size(15, 15); 
+const imageSize = new kakao.maps.Size(12, 12);
+
+// 마커 이미지를 생성합니다 
+const markerImage = new kakao.maps.MarkerImage(markerImagesrc, imageSize);
     
 // 마커 이미지를 생성합니다    
-const markerImageRed = new kakao.maps.MarkerImage(imageRed, imageSize),
-    markerImageYellow = new kakao.maps.MarkerImage(imageYellow, imageSize),
-    markerImageGreen = new kakao.maps.MarkerImage(imageGreen, imageSize),
-    markerImageBlue = new kakao.maps.MarkerImage(imageBlue, imageSize);
+// const markerImageRed = new kakao.maps.MarkerImage(imageRed, imageSize),
+//     markerImageYellow = new kakao.maps.MarkerImage(imageYellow, imageSize),
+//     markerImageGreen = new kakao.maps.MarkerImage(imageGreen, imageSize),
+//     markerImageBlue = new kakao.maps.MarkerImage(imageBlue, imageSize);
 
 // // 15명 이상 red marker
 // markerRed.forEach(element => {
@@ -160,97 +168,3 @@ const markerImageRed = new kakao.maps.MarkerImage(imageRed, imageSize),
 //         });
 //     });
 // });
-
-// // 10명 이상 yellow marker
-// markerYellow.forEach(element => {
-//     let marker = new kakao.maps.Marker({
-//         map: map,
-//         position: element.latlng,
-//         image: markerImageYellow
-//     });
-
-//     let content = '<div class ="label">'
-//     + '<span class="left"></span><span class="center">'
-//     + element.title + "    " + element.population
-//     + '</span><span class="right"></span></div>';
-
-//     let position = element.latlng;
-
-//     let customOverlay = new kakao.maps.CustomOverlay({
-//         position: position,
-//         content: content,
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseover', function () {
-//         customOverlay.setMap(map);
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseout', function () {
-//         setTimeout(function () {
-//             customOverlay.setMap();
-//         });
-//     });
-// });
-
-// // 5명 이상 green marker
-// markerGreen.forEach(element => {
-//     let marker = new kakao.maps.Marker({
-//         map: map,
-//         position: element.latlng,
-//         image: markerImageGreen
-//     });
-
-//     let content = '<div class ="label">'
-//     + '<span class="left"></span><span class="center">'
-//     + element.title + "    " + element.population
-//     + '</span><span class="right"></span></div>';
-
-//     let position = element.latlng;
-
-//     let customOverlay = new kakao.maps.CustomOverlay({
-//         position: position,
-//         content: content,
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseover', function () {
-//         customOverlay.setMap(map);
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseout', function () {
-//         setTimeout(function () {
-//             customOverlay.setMap();
-//         });
-//     });
-// });
-
-// // 5명 미만 blue marker
-// markerBlue.forEach(element => {
-//     let marker = new kakao.maps.Marker({
-//         map: map,
-//         position: element.latlng,
-//         image: markerImageBlue
-//     });
-
-//     let content = '<div class ="label">'
-//     + '<span class="left"></span><span class="center">'
-//     + element.title + "    " + element.population
-//     + '</span><span class="right"></span></div>';
-
-//     let position = element.latlng;
-
-//     let customOverlay = new kakao.maps.CustomOverlay({
-//         position: position,
-//         content: content,
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseover', function () {
-//         customOverlay.setMap(map);
-//     });
-
-//     kakao.maps.event.addListener(marker, 'mouseout', function () {
-//         setTimeout(function () {
-//             customOverlay.setMap();
-//         });
-//     });
-// });
-
