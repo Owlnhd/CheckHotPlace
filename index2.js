@@ -4,12 +4,6 @@ const range = 'Sheet1'; // 데이터를 읽고 쓸 시트와 범위
 
 let dataList = []; // 데이터 확인 시 사용할 리스트 변수
 
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 10 // 클러스터 할 최소 지도 레벨 
-});
-
 // // 현재 날짜와 시간을 가져오기
 // const currentDate = new Date();
 
