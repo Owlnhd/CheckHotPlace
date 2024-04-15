@@ -12,15 +12,22 @@ map.setCopyrightPosition(kakao.maps.CopyrightPosition.BOTTOMRIGHT, true);
 
 var locPosition;
 
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 1 // 클러스터 할 최소 지도 레벨 
-});
+// var clusterer = new kakao.maps.MarkerClusterer({
+//     map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+//     averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+//     minLevel: 2 // 클러스터 할 최소 지도 레벨 
+// });
 function createMarkersFromDataList() {
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+        minLevel: 1// 클러스터 할 최소 지도 레벨
+    });
+
     var markers = dataList.map(function(item) {
         return new kakao.maps.Marker({
-            position: item.coords
+            position: item.coords,
+            image: markerImage
         });
     });
 
@@ -135,9 +142,7 @@ if (navigator.geolocation) {
 //     imageGreen = "images/dot_green.png",
 //     imageBlue = "images/dot_blue.png";
 
-
-var markers = [];
-
+// 마커 이미지의 이미지 주소입니다
 var markerImagesrc = "images/dot_location.png";
 
 // 마커 이미지의 이미지 크기 입니다

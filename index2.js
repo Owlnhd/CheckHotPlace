@@ -87,8 +87,6 @@ function readData() {
         // console.log(dataList[0].coords);
 
         createMarkersFromDataList();
-
-        
         
         
         // 데이터를 가져오기 위해 jQuery를 사용합니다
