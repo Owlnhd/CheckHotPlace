@@ -4,11 +4,6 @@ const range = 'Sheet1'; // 데이터를 읽고 쓸 시트와 범위
 
 let dataList = []; // 데이터 확인 시 사용할 리스트 변수
 
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 10 // 클러스터 할 최소 지도 레벨 
-});
 
 // // 현재 날짜와 시간을 가져오기
 // const currentDate = new Date();
@@ -65,37 +60,3 @@ async function writeData() {
     });
 }
 
-// Google Sheets에서 데이터 읽고 좌표별 사람 수와 이름을 표시, 리스트 변수에 저장
-function readData() {
-    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        dataList = []; // 이전 데이터 초기화
-        const counts = {}; // 좌표별 사람 수를 저장할 객체
-
-        // 데이터를 순회하며 각 좌표별로 사람 수 계산
-        data.values.forEach(row => {
-            const name = row[2]; // 이름
-            // const coords = row[0] + ',' + row[1]; // 위도와 경도를 콤마로 구분하여 문자열 생성
-            
-            const coords = new kakao.maps.LatLng(row[0], row[1]);
-
-            counts[coords] = counts[coords] ? counts[coords] + 1 : 1;
-            dataList.push({name, coords, counts}); // 리스트 변수에 저장
-        });
-
-        
-        var markers = dataList.map(function(item) {
-            return new kakao.maps.Marker({
-                position: item.coords
-            });
-        });
-        
-        // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
-        
-
-    })
-    
-    .catch(error => console.error('Error:', error));
-}
