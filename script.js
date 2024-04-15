@@ -11,17 +11,6 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 map.setCopyrightPosition(kakao.maps.CopyrightPosition.BOTTOMRIGHT, true);
 
 var locPosition;
-const apiKey = 'AIzaSyDnKVr5IOUxBvfNRlGuIgUcqPlIM7Bdf1U';
-const spreadsheetId = '1N_RCQ5L4ciWBs-DYMuEmJb8IZg0rqCDPuEvve4mZ43k';
-const range = 'Sheet1'; // 데이터를 읽고 쓸 시트와 범위
-
-let dataList = []; // 데이터 확인 시 사용할 리스트 변수
-
-var clusterer = new kakao.maps.MarkerClusterer({
-    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-    minLevel: 10 // 클러스터 할 최소 지도 레벨 
-});
 
 // Google Sheets에서 데이터 읽고 좌표별 사람 수와 이름을 표시, 리스트 변수에 저장
 function readData() {
@@ -57,7 +46,6 @@ function readData() {
     
     .catch(error => console.error('Error:', error));
 }
-
 
 // 현재 위치 표시
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
