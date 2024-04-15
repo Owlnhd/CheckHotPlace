@@ -84,16 +84,16 @@ function readData() {
             dataList.push({name, coords, counts}); // 리스트 변수에 저장
         });
 
-        function createMarkersFromDataList() {
-            var markers = dataList.map(function(item) {
-                return new kakao.maps.Marker({
-                    position: item.coords
-                });
-            });
         
-            // 클러스터러에 마커들을 추가합니다
-            clusterer.addMarkers(markers);
-        }
+        var markers = dataList.map(function(item) {
+            return new kakao.maps.Marker({
+                position: item.coords
+            });
+        });
+        
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+        
 
     })
     
